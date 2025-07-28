@@ -4,19 +4,27 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Bathtub
+import androidx.compose.material.icons.filled.Bed
+import androidx.compose.material.icons.filled.BedroomParent
 import androidx.compose.material.icons.filled.DirectionsBus
 import androidx.compose.material.icons.filled.Event
 import androidx.compose.material.icons.filled.Hotel
 import androidx.compose.material.icons.filled.Luggage
+import androidx.compose.material.icons.filled.People
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Terrain
 import androidx.compose.material3.Icon
@@ -33,9 +41,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.example.trip_test.ui.screens.widgets.ImageCard
 
 @Composable
 fun Home() {
@@ -55,23 +66,23 @@ fun Home() {
             Text(text = "Hello 👋", style = MaterialTheme.typography.bodyLarge)
             OutlinedTextField(
                 leadingIcon = {
-                Icon(
-                    imageVector = Icons.Default.Search,
-                    tint = MaterialTheme.colorScheme.primary,
-                    contentDescription = "Search"
-                )
-            }, value = searchQuery, onValueChange = { searchQuery = it }, label = {
-                Text(
-                    text = "Where are you going?", style = TextStyle(color = Color.Gray)
-                )
-            }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(32.dp)
+                    Icon(
+                        imageVector = Icons.Default.Search,
+                        tint = MaterialTheme.colorScheme.primary,
+                        contentDescription = "Search"
+                    )
+                }, value = searchQuery, onValueChange = { searchQuery = it }, label = {
+                    Text(
+                        text = "Where are you going?", style = TextStyle(color = Color.Gray)
+                    )
+                }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(32.dp)
             )
             Box(
                 modifier = Modifier.padding(16.dp),
             ) {
                 Row(
-                    modifier = Modifier.padding(16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
 
@@ -103,15 +114,79 @@ fun Home() {
                 Text(text = "Stays")
                 Text(
                     text = "View All", style = TextStyle(
-                        //color = MaterialTheme.colorScheme.primary,
+                        color = MaterialTheme.colorScheme.primary,
                         textDecoration = TextDecoration.Underline,
 
                         ), modifier = Modifier.clickable(onClick = {})
                 )
             }
+            LazyRow(
+                contentPadding = PaddingValues(horizontal = 16.dp),
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                items(4) { // Display 4 scrollable cards
+                    Box(
+                        modifier = Modifier
+                            .width(200.dp)
+                            .padding(vertical = 8.dp)
+                    ) {
+                        Column {
+                            ImageCard(useNetworkImage = true)
 
+                            Text(
+                                "Kirimara Woodlands",
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
 
-        }
-    }
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Icon(Icons.Default.People, contentDescription = null)
+                                    Spacer(modifier = Modifier.width(4.dp))
+                                    Text(
+                                        "20 guests",
+                                        maxLines = 1,
+                                        overflow = TextOverflow.Ellipsis
+                                    )
+                                }
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Icon(Icons.Default.Bed, contentDescription = null)
+                                    Spacer(modifier = Modifier.width(4.dp))
+                                    Text("10 beds", maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                }
+                            }
 
-}
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Icon(Icons.Default.Bathtub, contentDescription = null)
+                                    Spacer(modifier = Modifier.width(4.dp))
+                                    Text("10 baths", maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                }
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Icon(Icons.Default.BedroomParent, contentDescription = null)
+                                    Spacer(modifier = Modifier.width(4.dp))
+                                    Text(
+                                        "10 bedrooms",
+                                        maxLines = 1,
+                                        overflow = TextOverflow.Ellipsis
+                                    )
+                                }
+                            }
+
+                            Text(
+                                text = "Ksh 165,000/night",
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                    }
+                }
+            }
+        }}}
