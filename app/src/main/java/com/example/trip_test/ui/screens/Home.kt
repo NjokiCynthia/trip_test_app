@@ -46,6 +46,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.trip_test.ui.screens.widgets.ImageCard
 
 @Composable
@@ -66,16 +67,16 @@ fun Home() {
             Text(text = "Hello 👋", style = MaterialTheme.typography.bodyLarge)
             OutlinedTextField(
                 leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Default.Search,
-                        tint = MaterialTheme.colorScheme.primary,
-                        contentDescription = "Search"
-                    )
-                }, value = searchQuery, onValueChange = { searchQuery = it }, label = {
-                    Text(
-                        text = "Where are you going?", style = TextStyle(color = Color.Gray)
-                    )
-                }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(32.dp)
+                Icon(
+                    imageVector = Icons.Default.Search,
+                    tint = MaterialTheme.colorScheme.primary,
+                    contentDescription = "Search"
+                )
+            }, value = searchQuery, onValueChange = { searchQuery = it }, label = {
+                Text(
+                    text = "Where are you going?", style = TextStyle(color = Color.Gray)
+                )
+            }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(32.dp)
             )
             Box(
                 modifier = Modifier.padding(16.dp),
@@ -134,9 +135,7 @@ fun Home() {
                             ImageCard(useNetworkImage = true)
 
                             Text(
-                                "Kirimara Woodlands",
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis
+                                "Kirimara Woodlands", maxLines = 1, overflow = TextOverflow.Ellipsis
                             )
 
                             Row(
@@ -148,14 +147,14 @@ fun Home() {
                                     Spacer(modifier = Modifier.width(4.dp))
                                     Text(
                                         "20 guests",
-                                        maxLines = 1,
-                                        overflow = TextOverflow.Ellipsis
+                                        fontSize = 14.sp,
+                                        maxLines = 1, overflow = TextOverflow.Ellipsis
                                     )
                                 }
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Icon(Icons.Default.Bed, contentDescription = null)
                                     Spacer(modifier = Modifier.width(4.dp))
-                                    Text("10 beds", maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                    Text("10 beds",fontSize = 14.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
                                 }
                             }
 
@@ -166,7 +165,7 @@ fun Home() {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Icon(Icons.Default.Bathtub, contentDescription = null)
                                     Spacer(modifier = Modifier.width(4.dp))
-                                    Text("10 baths", maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                    Text("10 baths", fontSize = 14.sp,maxLines = 1, overflow = TextOverflow.Ellipsis)
                                 }
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Icon(Icons.Default.BedroomParent, contentDescription = null)
@@ -174,6 +173,7 @@ fun Home() {
                                     Text(
                                         "10 bedrooms",
                                         maxLines = 1,
+                                        fontSize = 14.sp,
                                         overflow = TextOverflow.Ellipsis
                                     )
                                 }
@@ -189,4 +189,6 @@ fun Home() {
                     }
                 }
             }
-        }}}
+        }
+    }
+}
