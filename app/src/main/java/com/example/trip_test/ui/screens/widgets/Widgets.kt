@@ -39,7 +39,7 @@ fun ImageCard(useNetworkImage: Boolean = true) {
         modifier = Modifier
             .height(150.dp)
             .width(150.dp)
-            //.padding(16.dp)
+
     ) {
         // IMAGE
         if (useNetworkImage) {
